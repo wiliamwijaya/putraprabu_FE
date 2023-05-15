@@ -1,0 +1,15 @@
+.bawah {
+    left: "0";
+    bottom: "0";
+    height: "60px";
+    width: "100%";
+    position: "fixed";
+}
+
+.tinggi {
+    line-height: 40px;
+}
+
+.background {
+    background-color: #EAEAEA;
+}

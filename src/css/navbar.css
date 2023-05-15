@@ -1,0 +1,20 @@
+.navbar {
+    background-color: white;
+    font-family: "Poppins", sans-serif;
+    box-shadow: 0 4px 3px -3px gray;
+    border-bottom: solid gray !important;
+}
+
+.navbarhome {
+    padding-top: 10px;
+}
+
+.nav-link {
+    font-weight: 400 !important;
+    font-size: 130%;
+}
+
+.btn {
+    background-color: #7038ca;
+    margin-right: 0.5cm;
+}

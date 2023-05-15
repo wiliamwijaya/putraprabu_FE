@@ -1,0 +1,19 @@
+.bg {
+    height: 326px;
+    background-color: #17ade9;
+    border-radius: 13px;
+    color: white;
+}
+
+.btn {
+    background-color: #f1f1f1;
+    color: black;
+}
+
+.btn:hover {
+    background-color: #7038ca;
+}
+
+.font {
+    font-size: 25px;
+}

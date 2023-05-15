@@ -1,0 +1,92 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+.arrow-back {
+    display: none !important;
+    position: absolute;
+}
+
+.arroprofil {
+    display: none !important;
+    position: absolute;
+}
+
+.arroproduk {
+    display: none !important;
+    position: absolute;
+}
+
+@media screen and (max-width: 768px) {
+    .arrow-back {
+        display: block !important;
+        color: black !important;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .arroproduk {
+        display: block !important;
+        color: black !important;
+        margin-left: -90px !important;
+    }
+
+    .arroprofil {
+        display: block !important;
+        color: black !important;
+        margin-left: -120px !important;
+    }
+
+    .titleprofile {
+        margin-left: 70px !important;
+    }
+
+    .arrow-back {
+        display: block !important;
+        color: black !important;
+    }
+
+    .login-box {
+        margin: 0 !important;
+    }
+
+    .register-box {
+        margin: 0 !important;
+    }
+
+    .forminfo {
+        margin: 30px !important;
+    }
+
+    .hrf {
+        position: absolute;
+        left: 0;
+        bottom: 5%;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .forminfo {
+        padding: 40px !important;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .arroproduk {
+        display: block !important;
+        color: black !important;
+        margin-left: -30px !important;
+    }
+
+    .arroprofil {
+        display: block !important;
+        color: black !important;
+        margin-left: -40px !important;
+    }
+
+    .titleprofile {
+        margin-left: 20px !important;
+    }
+
+    .forminfo {
+        padding: 50px !important;
+    }
+}
