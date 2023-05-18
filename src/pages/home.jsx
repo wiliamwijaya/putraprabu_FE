@@ -96,7 +96,7 @@ function Home() {
                       style={{ height: "150px" }}
                     />
                     <CardContent>
-                      <b>{row?.name}</b>
+                      <Typography>{row?.name}</Typography>
                     </CardContent>
                     <CardContent>{row?.category}</CardContent>
                     <CardContent>Rp. {row?.price}</CardContent>
