@@ -15,7 +15,7 @@ const Contact = () => {
             <p className="font">
               Jika mesin atau barang yang ingin di bubut kami dapat membubut
               barang anda sesuai keinginan kalian. kalian dapat dengan mengechat
-              atau mentelephone kami.
+              atau hubungi kami.
             </p>
             <Grid className="col-12 text-center pt-3">
               <a href="https://wa.link/yfj2bl">

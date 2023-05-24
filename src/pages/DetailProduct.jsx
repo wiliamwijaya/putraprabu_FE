@@ -1,22 +1,22 @@
-import '../css/detailproduct.css'
-import { useEffect } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
-import { Card, Container, Row, Col } from 'react-bootstrap'
-import { TextField, Typography } from '@mui/material'
-import Navbar from '../component/navbar'
-import Navbarlogin from '../component/navbarlogin'
-import { useState } from 'react'
-import axios from 'axios'
+import "../css/detailproduct.css";
+import { useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { Card, Container, Row, Col } from "react-bootstrap";
+import { TextField, Typography } from "@mui/material";
+import Navbar from "../component/navbar";
+import Navbarlogin from "../component/navbarlogin";
+import { useState } from "react";
+import axios from "axios";
 
-const token = localStorage.getItem('token')
-const role = localStorage.getItem('role')
-const url = process.env.REACT_APP_BASE_URL
+const token = localStorage.getItem("token");
+const role = localStorage.getItem("role");
+const url = process.env.REACT_APP_BASE_URL;
 
 function Detailproduct() {
-  const { id } = useParams()
-  const navigate = useNavigate()
-  const [data, setData] = useState()
-  const [qty, setQty] = useState(1)
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [data, setData] = useState();
+  const [qty, setQty] = useState(1);
 
   const fetchData = () => {
     axios
@@ -24,9 +24,9 @@ function Detailproduct() {
         headers: { Authorization: token },
       })
       .then((res) => {
-        setData(res?.data?.result)
-      })
-  }
+        setData(res?.data?.result);
+      });
+  };
 
   const makeOrder = () => {
     const payload = {
@@ -34,16 +34,20 @@ function Detailproduct() {
       amount: Number(qty),
       total: data.price * Number(qty),
       status: 1,
+    };
+    if (Number(qty) >= data.stock || qty < 1) {
+      alert("masukan sesuai stock yang tersedia");
+    } else {
+      axios
+        .post(`${url}/orders`, payload, {
+          headers: { Authorization: token },
+        })
+        .then((res) => {
+          navigate("/");
+          alert("Order berhasil silakan tunggu");
+        });
     }
-    axios
-      .post(`${url}/orders`, payload, {
-        headers: { Authorization: token },
-      })
-      .then((res) => {
-        navigate('/')
-        alert('Order berhasil silakan tunggu')
-      })
-  }
+  };
 
   const handleDelete = () => {
     axios
@@ -51,20 +55,20 @@ function Detailproduct() {
         headers: { Authorization: token },
       })
       .then((res) => {
-        alert('Produk berhasil dihapus')
-        navigate('/listproduct')
-      })
-  }
+        alert("Produk berhasil dihapus");
+        navigate("/listproduct");
+      });
+  };
 
   useEffect(() => {
-    fetchData()
-  }, [])
+    fetchData();
+  }, []);
 
   function berhasil() {
-    makeOrder()
+    makeOrder();
   }
 
-  console.log(role)
+  console.log(role);
 
   return (
     <>
@@ -77,7 +81,7 @@ function Detailproduct() {
                 className="d-block w-100 image"
                 src={
                   data.img ??
-                  'https://www.snapon.co.za/images/thumbs/default-image_550.png'
+                  "https://www.snapon.co.za/images/thumbs/default-image_550.png"
                 }
                 alt=""
               />
@@ -89,12 +93,12 @@ function Detailproduct() {
               </Card>
             </Col>
             <Col xl="4" lg="4" md="5" sm="12" xs="12">
-              <Card className={`p-2`} style={{ borderRadius: '12px' }}>
+              <Card className={`p-2`} style={{ borderRadius: "12px" }}>
                 <Card.Body>
                   <h5>{data.name}</h5>
                   <Card.Text
                     className={`m-0 text-secondary`}
-                    style={{ fontSize: '14px' }}
+                    style={{ fontSize: "14px" }}
                   >
                     {data.category}
                   </Card.Text>
@@ -103,7 +107,7 @@ function Detailproduct() {
                   {!token ? (
                     <button
                       className={`button`}
-                      onClick={() => navigate('/Login')}
+                      onClick={() => navigate("/Login")}
                     >
                       ambil di tempat
                     </button>
@@ -126,15 +130,15 @@ function Detailproduct() {
                         <button
                           className={`button  mt-3`}
                           onClick={berhasil}
-                          disabled={qty > data.stock || qty < 1}
+                          disabled={qty < 1}
                         >
                           kirim
                         </button>
                       )}
-                      {role === '1' && (
+                      {role === "1" && (
                         <button
                           className={`button mt-3`}
-                          style={{ background: 'red' }}
+                          style={{ background: "red" }}
                           onClick={handleDelete}
                         >
                           Hapus
@@ -149,7 +153,7 @@ function Detailproduct() {
         )}
       </Container>
     </>
-  )
+  );
 }
 
-export default Detailproduct
+export default Detailproduct;

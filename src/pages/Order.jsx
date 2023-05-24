@@ -84,6 +84,7 @@ export default function Order() {
                     {moment(row?.createdAt).format("DD MMMM yyyy | hh:mm")}
                   </p>
                 </div>
+                <p>penerima: {row?.user?.username ?? "-"}</p>
                 <h6 className="my-1">{row?.product?.name}</h6>
                 <p className="my-1">Rp. {row?.total ?? 0}</p>
                 <b className="my-1">{generateStatus(row?.status ?? 1)}</b>

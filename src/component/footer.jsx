@@ -29,11 +29,13 @@ const footer = () => {
           <div className="col-lg-2">
             <b>Hubungi sekarang</b>
             <br />
-            <FontAwesomeIcon
-              icon={faWhatsappSquare}
-              className="fa-brands fa-2x"
-              style={{ color: "#00ff04" }}
-            />
+            <a href="https://wa.link/mv65zr">
+              <FontAwesomeIcon
+                icon={faWhatsappSquare}
+                className="fa-brands fa-2x"
+                style={{ color: "#00ff04" }}
+              />
+            </a>
           </div>
         </div>
       </div>

@@ -1,32 +1,22 @@
-import * as React from 'react'
-import Table from '@mui/material/Table'
-import TableBody from '@mui/material/TableBody'
-import TableCell from '@mui/material/TableCell'
-import TableContainer from '@mui/material/TableContainer'
-import TableHead from '@mui/material/TableHead'
-import TableRow from '@mui/material/TableRow'
-import Paper from '@mui/material/Paper'
-import axios from 'axios'
-import { Container } from '@mui/material'
-import Navbar from '../component/navbar'
-import Navbarlogin from '../component/navbarlogin'
-const token = localStorage.getItem('token')
-const url = process.env.REACT_APP_BASE_URL
-
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein }
-}
-
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-]
+import * as React from "react";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import axios from "axios";
+import { Container } from "@mui/material";
+import Navbar from "../component/navbar";
+import Navbarlogin from "../component/navbarlogin";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faWhatsappSquare } from "@fortawesome/free-brands-svg-icons";
+const token = localStorage.getItem("token");
+const url = process.env.REACT_APP_BASE_URL;
 
 export default function BasicTable() {
-  const [data, setData] = React.useState([])
+  const [data, setData] = React.useState([]);
 
   const fetchData = () => {
     axios
@@ -34,24 +24,34 @@ export default function BasicTable() {
         headers: { Authorization: token },
       })
       .then((res) => {
-        setData(res?.data?.result)
-      })
-  }
+        setData(res?.data?.result);
+      });
+  };
 
   React.useEffect(() => {
-    fetchData()
-  }, [])
+    fetchData();
+  }, []);
 
   const generateStatus = (value) => {
-    if (value === 1) return 'Waiting List'
-    if (value === 2) return 'On Process'
-    if (value === 3) return 'Complete'
-  }
+    if (value === 1) return "Waiting List";
+    if (value === 2) return "On Process";
+    if (value === 3) return "Complete";
+  };
 
   return (
     <>
       {token ? <Navbarlogin /> : <Navbar />}
       <Container sx={{ pt: 5 }}>
+        <h4>
+          silakan melakukan pembayaran dan mengirimkan bukti ke
+          <a href="https://wa.link/mv65zr">
+            <FontAwesomeIcon
+              icon={faWhatsappSquare}
+              className="fa-brands fa-1x"
+              style={{ color: "#00ff04" }}
+            />
+          </a>
+        </h4>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
@@ -69,10 +69,10 @@ export default function BasicTable() {
               {data?.map((row) => (
                 <TableRow
                   key={row?.id}
-                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell component="th" scope="row">
-                    <b> {row?.product?.name ?? 'Deleted Product'}</b>
+                    <b> {row?.product?.name ?? "Deleted Product"}</b>
                   </TableCell>
                   <TableCell align="center">{row?.id}</TableCell>
                   <TableCell align="center">x{row?.amount}</TableCell>
@@ -87,5 +87,5 @@ export default function BasicTable() {
         </TableContainer>
       </Container>
     </>
-  )
+  );
 }

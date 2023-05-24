@@ -82,7 +82,8 @@ function Home() {
 
       <div className="card-product">
         {data && (
-          <Container sx={{ border: "none" }}>
+          <Container className="pb-3" sx={{ border: "none" }}>
+            <h3 className="pb-2">Product</h3>
             <Grid container spacing={3}>
               {data.map((row, i) => (
                 <Grid key={i} item xs={2}>
