@@ -22,7 +22,7 @@ export default function BasicTable() {
 
   const fetchData = () => {
     axios
-      .get(`${url}/orders/history`, {
+      .get(`${url}/orders/history/admin`, {
         headers: { Authorization: token },
       })
       .then((res) => {
@@ -85,6 +85,7 @@ export default function BasicTable() {
                   </TableCell>
                 </TableRow>
               ))}
+              <p></p>
             </TableBody>
           </Table>
         </TableContainer>

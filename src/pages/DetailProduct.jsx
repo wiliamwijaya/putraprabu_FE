@@ -7,6 +7,8 @@ import Navbar from "../component/navbar";
 import Navbarlogin from "../component/navbarlogin";
 import { useState } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const token = localStorage.getItem("token");
 const role = localStorage.getItem("role");
@@ -43,8 +45,17 @@ function Detailproduct() {
           headers: { Authorization: token },
         })
         .then((res) => {
-          navigate("/");
-          alert("Order berhasil silakan tunggu");
+          toast.success("Barang Berhasil Di Order!", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+          navigate("/history");
         });
     }
   };
@@ -105,28 +116,37 @@ function Detailproduct() {
                   <h6 className={`mt-3 mb-4`}>Rp. {data.price}</h6>
                   <h6 className={`mt-3 mb-4`}>{data.stock ?? 0} pcs</h6>
                   {!token ? (
-                    <button
-                      className={`button`}
-                      onClick={() => navigate("/Login")}
-                    >
-                      ambil di tempat
-                    </button>
-                  ) : (
                     <>
-                      <TextField
-                        label="Qty"
-                        type="number"
-                        sx={{ mb: 3 }}
-                        value={qty}
-                        onChange={(e) => setQty(e.target.value)}
-                        size="small"
-                        fullWidth
-                        helperText={`Maksimal qty: ${data.stock ?? 0}`}
-                      />
                       <a href="https://wa.link/ljh6j8">
                         <button className={`button`}>ambil di tempat</button>
                       </a>
-                      {data.stock > 0 && (
+                      <button
+                        className={`button mt-3`}
+                        onClick={() => navigate("/Login")}
+                      >
+                        Kirim
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      {role === "2" && (
+                        <TextField
+                          label="Qty"
+                          type="number"
+                          sx={{ mb: 3 }}
+                          value={qty}
+                          onChange={(e) => setQty(e.target.value)}
+                          size="small"
+                          fullWidth
+                          helperText={`Maksimal qty: ${data.stock ?? 0}`}
+                        />
+                      )}
+                      {role === "2" && (
+                        <a href="https://wa.link/ljh6j8">
+                          <button className={`button`}>ambil di tempat</button>
+                        </a>
+                      )}
+                      {data.stock > 0 && role === "2" && (
                         <button
                           className={`button  mt-3`}
                           onClick={berhasil}

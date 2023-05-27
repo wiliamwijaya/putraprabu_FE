@@ -2,8 +2,10 @@ import React from "react";
 import "./../css/footer.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWhatsappSquare } from "@fortawesome/free-brands-svg-icons";
+import { useNavigate } from "react-router-dom";
 
-const footer = () => {
+const Footer = () => {
+  const navigate = useNavigate();
   return (
     <footer className="py-4 background">
       <div className="container">
@@ -14,8 +16,8 @@ const footer = () => {
             <p>0813-7325-2773</p>
           </div>
           <div className="col-lg-2 tinggi">
-            <b>Home</b> <br />
-            <b>Product</b>
+            <b onClick={() => navigate("/")}>Home</b> <br />
+            <b onClick={() => navigate("/")}>Product</b>
           </div>
           <div className="col-lg-3">
             {/* Connect with us
@@ -43,4 +45,4 @@ const footer = () => {
   );
 };
 
-export default footer;
+export default Footer;

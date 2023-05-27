@@ -10,6 +10,9 @@ import CreateProduct from "./pages/Createproduct";
 import Listproduct from "./pages/Listproduct";
 import Order from "./pages/Order";
 import History from "./pages/History";
+import Historyadmin from "./pages/Historyadmin";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   <title>Putra prabu</title>;
@@ -24,10 +27,12 @@ function App() {
     { path: "/listproduct", component: <Listproduct /> },
     { path: "/orderlist", component: <Order /> },
     { path: "/history", component: <History /> },
+    { path: "/history/admin", component: <Historyadmin /> },
   ];
 
   return (
     <div>
+      <ToastContainer />
       <Routes>
         {halaman.map((row, i) => (
           <Route key={i} exact path={row.path} element={row.component}></Route>
