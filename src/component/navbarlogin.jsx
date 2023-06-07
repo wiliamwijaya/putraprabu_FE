@@ -29,7 +29,7 @@ const Header = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
             {role === "1" && (
-              <Button class="btn" onClick={() => navigate("/listproduct")}>
+              <Button class="btn btn2" onClick={() => navigate("/listproduct")}>
                 Admin
               </Button>
             )}

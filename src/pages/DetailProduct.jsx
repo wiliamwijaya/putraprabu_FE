@@ -37,8 +37,17 @@ function Detailproduct() {
       total: data.price * Number(qty),
       status: 1,
     };
-    if (Number(qty) >= data.stock || qty < 1) {
-      alert("masukan sesuai stock yang tersedia");
+    if (Number(qty) > data.stock) {
+      toast.error("masukan sesuai stock yang tersedia", {
+        position: "top-center",
+        autoClose: 750,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
     } else {
       axios
         .post(`${url}/orders`, payload, {
@@ -114,7 +123,7 @@ function Detailproduct() {
                     {data.category}
                   </Card.Text>
                   <h6 className={`mt-3 mb-4`}>Rp. {data.price}</h6>
-                  <h6 className={`mt-3 mb-4`}>{data.stock ?? 0} pcs</h6>
+                  <h6 className={`mt-3 mb-4`}>Stock: {data.stock ?? 0} pcs</h6>
                   {!token ? (
                     <>
                       <a href="https://wa.link/ljh6j8">
@@ -141,7 +150,7 @@ function Detailproduct() {
                           helperText={`Maksimal qty: ${data.stock ?? 0}`}
                         />
                       )}
-                      {role === "2" && (
+                      {data.stock > 0 && role === "2" && (
                         <a href="https://wa.link/ljh6j8">
                           <button className={`button`}>ambil di tempat</button>
                         </a>
@@ -158,7 +167,7 @@ function Detailproduct() {
                       {role === "1" && (
                         <button
                           className={`button mt-3`}
-                          style={{ background: "red" }}
+                          style={{ background: "red", border: "none" }}
                           onClick={handleDelete}
                         >
                           Hapus

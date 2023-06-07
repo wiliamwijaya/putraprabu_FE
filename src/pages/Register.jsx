@@ -10,6 +10,10 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Navbar from "../component/navbar";
+import Navbarlogin from "../component/navbarlogin";
+import { toast } from "react-toastify";
+const token = localStorage.getItem("token");
 const url = process.env.REACT_APP_BASE_URL;
 
 export default function Register() {
@@ -30,7 +34,16 @@ export default function Register() {
       alamat === "" ||
       notelephone === ""
     ) {
-      alert("tidak boleh kosong");
+      toast.error("tidak boleh kosong", {
+        position: "top-center",
+        autoClose: 750,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
     } else {
       const data = {
         email,
@@ -41,6 +54,16 @@ export default function Register() {
         role: 2,
       };
       axios.post(`${url}/auth/register`, data).then((res) => {
+        toast.success("Akun berhasil Dibuat!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
         navigate("/login");
       });
     }
@@ -48,6 +71,7 @@ export default function Register() {
 
   return (
     <div>
+      {token ? <Navbarlogin /> : <Navbar />}
       <Grid item xs={12} sm={12} md={5} lg={6} square>
         <Box
           className="login-box"
@@ -131,6 +155,7 @@ export default function Register() {
                 size="small"
                 type="tel"
                 label="telephone"
+                inputProps={{ maxLength: 12 }}
                 onChange={(e) => setTelephone(e.target.value)}
                 placeholder="081327648592"
                 sx={{ borderRadius: "16px", fontSize: "14px" }}

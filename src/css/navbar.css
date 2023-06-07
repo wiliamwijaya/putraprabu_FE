@@ -7,6 +7,7 @@
 
 .navbarhome {
     padding-top: 10px;
+    cursor: pointer;
 }
 
 .nav-link {
@@ -17,4 +18,8 @@
 .btn {
     background-color: #7038ca;
     margin-right: 0.5cm;
+}
+
+.btn2:hover {
+    color: white;
 }

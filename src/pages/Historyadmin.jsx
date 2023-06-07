@@ -14,10 +14,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWhatsappSquare } from "@fortawesome/free-brands-svg-icons";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 const token = localStorage.getItem("token");
+const role = localStorage.getItem("role");
 const url = process.env.REACT_APP_BASE_URL;
 
 export default function BasicTable() {
+  const history = useNavigate();
   const [data, setData] = React.useState([]);
 
   const fetchData = () => {
@@ -31,8 +34,9 @@ export default function BasicTable() {
   };
 
   React.useEffect(() => {
-    fetchData();
-  }, []);
+    if (role === "1") fetchData();
+    else history("/");
+  }, [role]);
 
   const generateStatus = (value) => {
     if (value === 1) return "Waiting List";
@@ -45,16 +49,6 @@ export default function BasicTable() {
       {token ? <Navbarlogin /> : <Navbar />}
       <ToastContainer />
       <Container sx={{ pt: 5 }}>
-        <h4>
-          silakan melakukan pembayaran dan mengirimkan bukti ke
-          <a href="https://wa.link/mv65zr">
-            <FontAwesomeIcon
-              icon={faWhatsappSquare}
-              className="fa-brands fa-1x"
-              style={{ color: "#00ff04" }}
-            />
-          </a>
-        </h4>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>

@@ -23,7 +23,7 @@ const Header = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <Button class="btn" onClick={() => navigate("/login")}>
+            <Button class="btn btn2" onClick={() => navigate("/login")}>
               Masuk <FiLogIn />
             </Button>
             {/* <Nav.Link href="#">

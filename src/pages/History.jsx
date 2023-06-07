@@ -11,9 +11,10 @@ import { Container } from "@mui/material";
 import Navbar from "../component/navbar";
 import Navbarlogin from "../component/navbarlogin";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faWhatsappSquare } from "@fortawesome/free-brands-svg-icons";
-import { ToastContainer, toast } from "react-toastify";
+import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "../css/history.css";
 const token = localStorage.getItem("token");
 const url = process.env.REACT_APP_BASE_URL;
 
@@ -44,17 +45,11 @@ export default function BasicTable() {
     <>
       {token ? <Navbarlogin /> : <Navbar />}
       <ToastContainer />
-      <Container sx={{ pt: 5 }}>
-        <h4>
-          silakan melakukan pembayaran dan mengirimkan bukti ke
-          <a href="https://wa.link/mv65zr">
-            <FontAwesomeIcon
-              icon={faWhatsappSquare}
-              className="fa-brands fa-1x"
-              style={{ color: "#00ff04" }}
-            />
-          </a>
-        </h4>
+      <Container sx={{ pt: 5, pb: 5 }}>
+        <h4>Silakan Melakukan Chat Ke Whatsapp Untuk Melakukan Pembayaran</h4>
+        <a className="whatsup" href="https://wa.link/mv65zr">
+          <FontAwesomeIcon icon={faWhatsapp} className="float" />
+        </a>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>

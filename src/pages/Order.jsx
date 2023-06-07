@@ -14,6 +14,7 @@ import Navbarlogin from "../component/navbarlogin";
 import "../css/order.css";
 import axios from "axios";
 import moment from "moment/moment";
+import { ToastContainer, toast } from "react-toastify";
 
 const url = process.env.REACT_APP_BASE_URL;
 const token = localStorage.getItem("token");
@@ -51,11 +52,29 @@ export default function Order() {
         }
       )
       .then((res) => {
-        alert("Update Success");
+        toast.success("Update Success!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
         fetchData();
       })
       .catch(() => {
-        alert("Update Failed");
+        toast.error("Update Failed", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
       });
   };
 
@@ -66,7 +85,7 @@ export default function Order() {
         {data?.map((row, i) => (
           <Card key={i} className="mb-3">
             <Row>
-              <Col className="pt-2" style={{ width: "120px", height: "200px" }}>
+              <Col className="pt-2" style={{ width: "120px", height: "250px" }}>
                 <img src={row?.product?.img} alt="" className="productImage" />
               </Col>
               <Col>
@@ -85,6 +104,7 @@ export default function Order() {
                   </p>
                 </div>
                 <p>penerima: {row?.user?.username ?? "-"}</p>
+                <p>No Order: {row?.id ?? "-"}</p>
                 <h6 className="my-1">{row?.product?.name}</h6>
                 <p className="my-1">Rp. {row?.total ?? 0}</p>
                 <b className="my-1">{generateStatus(row?.status ?? 1)}</b>

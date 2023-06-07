@@ -16,8 +16,13 @@ const Footer = () => {
             <p>0813-7325-2773</p>
           </div>
           <div className="col-lg-2 tinggi">
-            <b onClick={() => navigate("/")}>Home</b> <br />
-            <b onClick={() => navigate("/")}>Product</b>
+            <b onClick={() => navigate("/")} style={{ cursor: "pointer" }}>
+              Home
+            </b>{" "}
+            <br />
+            <b onClick={() => navigate("/")} style={{ cursor: "pointer" }}>
+              Product
+            </b>
           </div>
           <div className="col-lg-3">
             {/* Connect with us

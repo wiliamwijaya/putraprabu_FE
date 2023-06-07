@@ -1,11 +1,8 @@
 import React from "react";
 import "../css/contact.css";
 import { Grid, Container, Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 
 const Contact = () => {
-  const navigate = useNavigate();
-
   return (
     <Container className="py-5">
       <Grid className="container">
@@ -19,7 +16,7 @@ const Contact = () => {
             </p>
             <Grid className="col-12 text-center pt-3">
               <a href="https://wa.link/yfj2bl">
-                <Button class="btn">Hubungi</Button>
+                <Button class="btn btn2">Hubungi</Button>
               </a>
             </Grid>
           </Grid>

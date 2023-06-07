@@ -11,6 +11,9 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Navbar from "../component/navbar";
+import Navbarlogin from "../component/navbarlogin";
+import { toast } from "react-toastify";
 const token = localStorage.getItem("token");
 const url = process.env.REACT_APP_BASE_URL;
 
@@ -26,12 +29,33 @@ export default function Login() {
   const handlelogin = (e) => {
     e.preventDefault();
     if (email === "" || values.password === "") {
-      alert("Email dan Password tidak boleh kosong");
+      toast.error("Nama dan Password tidak boleh kosong", {
+        position: "top-center",
+        autoClose: 750,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
     } else {
       const data = {
         username: email,
         password,
       };
+      setTimeout(function () {
+        toast.error("Nama dan Password Salah", {
+          position: "top-center",
+          autoClose: 750,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      }, 750);
       axios.post(`${url}/auth/login`, data).then((res) => {
         localStorage.setItem("token", res?.data?.data?.token);
         localStorage.setItem("id", res?.data?.data?.id);
@@ -54,6 +78,7 @@ export default function Login() {
 
   return (
     <div>
+      {token ? <Navbarlogin /> : <Navbar />}
       <Grid item xs={12} sm={12} md={5} lg={6} square>
         <Box
           className="login-box"

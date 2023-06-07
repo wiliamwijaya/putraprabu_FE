@@ -10,6 +10,8 @@ import Footer from "../component/footer";
 import Whyus from "../component/whyus";
 import Contact from "../component/contact";
 import Foto from "../asset/image.png";
+import Foto2 from "../asset/image2.jpg";
+import Foto3 from "../asset/image3.jpg";
 import { Row, Col } from "react-bootstrap";
 import {
   Grid,
@@ -68,12 +70,29 @@ function Home() {
       >
         <Row>
           <Col className="slide-card">
-            <img src={Foto} alt="" />
+            <img
+              style={{ height: "750px", objectFit: "cover" }}
+              src={Foto}
+              alt=""
+            />
           </Col>
         </Row>
         <Row>
           <Col className="slide-card">
-            <img src={Foto} alt="" />
+            <img
+              style={{ height: "750px", objectFit: "cover" }}
+              src={Foto2}
+              alt=""
+            />
+          </Col>
+        </Row>
+        <Row>
+          <Col className="slide-card">
+            <img
+              style={{ height: "750px", objectFit: "cover" }}
+              src={Foto3}
+              alt=""
+            />
           </Col>
         </Row>
       </OwlCarousel>
@@ -86,22 +105,24 @@ function Home() {
             <h3 className="pb-2">Product</h3>
             <Grid container spacing={3}>
               {data.map((row, i) => (
-                <Grid key={i} item xs={2}>
-                  <Card
-                    onClick={() => history(`/product/${row.id}`)}
-                    style={{ height: "auto" }}
-                  >
-                    <CardMedia
-                      component="img"
-                      src={row?.img}
-                      style={{ height: "150px" }}
-                    />
-                    <CardContent>
-                      <Typography>{row?.name}</Typography>
-                    </CardContent>
-                    <CardContent>{row?.category}</CardContent>
-                    <CardContent>Rp. {row?.price}</CardContent>
-                  </Card>
+                <Grid key={i} item xs={2} style={{ cursor: "pointer" }}>
+                  {row?.stock > 0 && (
+                    <Card
+                      onClick={() => history(`/product/${row.id}`)}
+                      style={{ height: "auto" }}
+                    >
+                      <CardMedia
+                        component="img"
+                        src={row?.img}
+                        style={{ height: "150px" }}
+                      />
+                      <CardContent>
+                        <Typography>{row?.name}</Typography>
+                      </CardContent>
+                      <CardContent>{row?.category}</CardContent>
+                      <CardContent>Rp. {row?.price}</CardContent>
+                    </Card>
+                  )}
                 </Grid>
               ))}
             </Grid>
