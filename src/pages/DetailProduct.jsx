@@ -9,6 +9,7 @@ import { useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ConfirmationModal from "../component/modal";
 
 const token = localStorage.getItem("token");
 const role = localStorage.getItem("role");
@@ -19,6 +20,8 @@ function Detailproduct() {
   const navigate = useNavigate();
   const [data, setData] = useState();
   const [qty, setQty] = useState(1);
+
+  const [showModal, setShowModal] = useState(false)
 
   const fetchData = () => {
     axios
@@ -85,7 +88,7 @@ function Detailproduct() {
   }, []);
 
   function berhasil() {
-    makeOrder();
+    setShowModal(true)
   }
 
   console.log(role);
@@ -180,6 +183,11 @@ function Detailproduct() {
             </Col>
           </Row>
         )}
+        <ConfirmationModal 
+          show={showModal}
+          onBack={() => setShowModal(false)}
+          onConfirm={() => makeOrder()}
+          />
       </Container>
     </>
   );
