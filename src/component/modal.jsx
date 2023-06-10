@@ -20,8 +20,8 @@ const ConfirmationModal = (props) => {
           </p>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={props.onBack}>Go back</Button>
-          <Button variant="primary" onClick={props.OnAccept}>Confirm</Button>
+          <Button variant="secondary" onClick={props.onHide}>Go back</Button>
+          <Button variant="primary" onClick={props.onExit}>Confirm</Button>
         </Modal.Footer>
       </Modal>
     );

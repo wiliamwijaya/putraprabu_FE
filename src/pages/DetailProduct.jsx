@@ -185,8 +185,8 @@ function Detailproduct() {
         )}
         <ConfirmationModal 
           show={showModal}
-          onBack={() => setShowModal(false)}
-          onConfirm={() => makeOrder()}
+          onHide={() => setShowModal(false)}
+          onExit={() => makeOrder()}
           />
       </Container>
     </>
