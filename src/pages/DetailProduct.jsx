@@ -96,7 +96,7 @@ function Detailproduct() {
   }, []);
 
   function berhasil() {
-    setShowModal(true);
+    makeOrder();
   }
 
   return (
@@ -189,6 +189,11 @@ function Detailproduct() {
             </Col>
           </Row>
         )}
+        <ConfirmationModal
+          show={showModal}
+          onHide={() => setShowModal(false)}
+          onExit={() => makeOrder()}
+        />
       </Container>
       <ConfirmationModal
         show={showModal}
