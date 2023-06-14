@@ -7,8 +7,9 @@ import Navbar from "../component/navbar";
 import Navbarlogin from "../component/navbarlogin";
 import { useState } from "react";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ConfirmationModal from "../component/modal";
 
 const token = localStorage.getItem("token");
 const role = localStorage.getItem("role");
@@ -19,6 +20,7 @@ function Detailproduct() {
   const navigate = useNavigate();
   const [data, setData] = useState();
   const [qty, setQty] = useState(1);
+  const [showModal, setShowModal] = useState(false);
 
   const fetchData = () => {
     axios
@@ -75,7 +77,16 @@ function Detailproduct() {
         headers: { Authorization: token },
       })
       .then((res) => {
-        alert("Produk berhasil dihapus");
+        toast.success("Produk berhasil dihapus", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
         navigate("/listproduct");
       });
   };
@@ -85,10 +96,8 @@ function Detailproduct() {
   }, []);
 
   function berhasil() {
-    makeOrder();
+    setShowModal(true);
   }
-
-  console.log(role);
 
   return (
     <>
@@ -181,6 +190,11 @@ function Detailproduct() {
           </Row>
         )}
       </Container>
+      <ConfirmationModal
+        show={showModal}
+        onHide={() => setShowModal(false)}
+        onConfirm={() => makeOrder()}
+      />
     </>
   );
 }

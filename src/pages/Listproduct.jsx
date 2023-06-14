@@ -76,7 +76,9 @@ export default function Listproduct() {
                   style={{ height: "150px" }}
                 />
                 <CardContent>
-                  <b>{res.name ?? "-"}</b>
+                  <b style={{ whiteSpace: "nowrap", overflow: "hidden" }}>
+                    {res.name ?? "-"}
+                  </b>
                 </CardContent>
                 <CardContent>{res.category ?? "-"}</CardContent>
                 <CardContent>Rp. {res.price ?? 0}</CardContent>

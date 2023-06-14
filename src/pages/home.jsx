@@ -117,7 +117,11 @@ function Home() {
                         style={{ height: "150px" }}
                       />
                       <CardContent>
-                        <Typography>{row?.name}</Typography>
+                        <Typography
+                          style={{ whiteSpace: "nowrap", overflow: "hidden" }}
+                        >
+                          {row?.name}
+                        </Typography>
                       </CardContent>
                       <CardContent>{row?.category}</CardContent>
                       <CardContent>Rp. {row?.price}</CardContent>
