@@ -113,6 +113,7 @@ export default function Createproduct() {
                   size="small"
                   name="NamaProduct"
                   label="NamaProduct"
+                  inputProps={{ maxLength: 100 }}
                   placeholder="Contoh: Baut, Stang"
                   onChange={(e) => setproductname(e.target.value)}
                   sx={{ borderRadius: "16px", fontSize: "14px" }}
@@ -128,7 +129,8 @@ export default function Createproduct() {
                   size="small"
                   name="harga"
                   label="harga"
-                  placeholder="Contoh: 20.000"
+                  placeholder="Contoh: 20000"
+                  type="number"
                   onChange={(e) => setprice(e.target.value)}
                   sx={{ borderRadius: "16px", fontSize: "14px" }}
                 />
@@ -159,6 +161,7 @@ export default function Createproduct() {
                   size="small"
                   name="category"
                   label="category"
+                  inputProps={{ maxLength: 30 }}
                   placeholder="Contoh: Sparepart, mobil, motor"
                   onChange={(e) => setcategory(e.target.value)}
                   sx={{ borderRadius: "16px", fontSize: "14px" }}
@@ -174,6 +177,7 @@ export default function Createproduct() {
                   size="small"
                   name="deskripsi"
                   label="deskripsi"
+                  inputProps={{ maxLength: 255 }}
                   placeholder=""
                   onChange={(e) => setdeskripsi(e.target.value)}
                   sx={{ borderRadius: "16px", fontSize: "14px" }}
@@ -190,12 +194,13 @@ export default function Createproduct() {
                   name="gambar"
                   label="gambar"
                   placeholder="Hanya bisa Link gambar"
+                  inputProps={{ maxLength: 255 }}
                   onChange={(e) => setgambar(e.target.value)}
                   sx={{ borderRadius: "16px", fontSize: "14px" }}
                 />
               </FormControl>
 
-              <Grid className="d-grid gap-2">
+              <Grid className="d-grid gap-2 btn2">
                 <Button
                   size="lg"
                   variant="body2"

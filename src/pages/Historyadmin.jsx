@@ -42,8 +42,8 @@ export default function BasicTable() {
     if (value === 1) return "Waiting List";
     if (value === 2) return "On Process";
     if (value === 3) return "Complete";
+    if (value >= 4) return "Cancel";
   };
-
   return (
     <>
       {token ? <Navbarlogin /> : <Navbar />}

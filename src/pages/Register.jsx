@@ -101,6 +101,7 @@ export default function Register() {
                 size="small"
                 name="email"
                 label="Email"
+                inputProps={{ maxLength: 50 }}
                 placeholder="johndee@gmail.com"
                 onChange={(e) => setEmail(e.target.value)}
                 sx={{ borderRadius: "16px", fontSize: "14px" }}
@@ -128,7 +129,8 @@ export default function Register() {
               <OutlinedInput
                 size="small"
                 label="Username"
-                placeholder="super_admin"
+                placeholder="john doe"
+                inputProps={{ maxLength: 25 }}
                 onChange={(e) => setNama(e.target.value)}
                 sx={{ borderRadius: "16px", fontSize: "14px" }}
               />

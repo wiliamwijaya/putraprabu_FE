@@ -108,7 +108,8 @@ export default function Login() {
                 size="small"
                 name="email"
                 label="Username"
-                placeholder="Contoh: super_admin"
+                placeholder="Contoh: john doe"
+                inputProps={{ maxLength: 25 }}
                 onChange={(e) => setEmail(e.target.value)}
                 sx={{ borderRadius: "16px", fontSize: "14px" }}
               />

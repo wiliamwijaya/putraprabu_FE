@@ -96,7 +96,7 @@ function Detailproduct() {
   }, []);
 
   function berhasil() {
-    makeOrder();
+    setShowModal(true);
   }
 
   return (
@@ -192,14 +192,9 @@ function Detailproduct() {
         <ConfirmationModal
           show={showModal}
           onHide={() => setShowModal(false)}
-          onExit={() => makeOrder()}
+          onConfirm={() => makeOrder()}
         />
       </Container>
-      <ConfirmationModal
-        show={showModal}
-        onHide={() => setShowModal(false)}
-        onConfirm={() => makeOrder()}
-      />
     </>
   );
 }

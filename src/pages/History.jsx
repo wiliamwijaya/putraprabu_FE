@@ -1,5 +1,6 @@
 import * as React from "react";
 import Table from "@mui/material/Table";
+import { Button } from "react-bootstrap";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
@@ -12,7 +13,8 @@ import Navbar from "../component/navbar";
 import Navbarlogin from "../component/navbarlogin";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
+import { useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import "../css/history.css";
 const token = localStorage.getItem("token");
@@ -20,6 +22,7 @@ const url = process.env.REACT_APP_BASE_URL;
 
 export default function BasicTable() {
   const [data, setData] = React.useState([]);
+  const [showModal, setShowModal] = useState(false);
 
   const fetchData = () => {
     axios
@@ -39,6 +42,43 @@ export default function BasicTable() {
     if (value === 1) return "Waiting List";
     if (value === 2) return "On Process";
     if (value === 3) return "Complete";
+    if (value >= 4) return "Cancel";
+  };
+
+  const handleProcess = (id, status) => {
+    axios
+      .put(
+        `${url}/orders/${id}/cancel`,
+        { status },
+        {
+          headers: { Authorization: token },
+        }
+      )
+      .then((res) => {
+        toast.success("Update Success!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+        fetchData();
+      })
+      .catch(() => {
+        toast.error("Update Failed", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      });
   };
 
   return (
@@ -75,8 +115,17 @@ export default function BasicTable() {
                   <TableCell align="center">{row?.id}</TableCell>
                   <TableCell align="center">x{row?.amount}</TableCell>
                   <TableCell align="center">Rp. {row?.total}</TableCell>
-                  <TableCell align="right">
+                  <TableCell align="center">
                     {generateStatus(row?.status)}
+                  </TableCell>
+                  <TableCell align="right">
+                    <Button
+                      className=""
+                      onClick={() => handleProcess(row?.id, row?.status + 3)}
+                      disabled={row?.status > 2}
+                    >
+                      {row?.status === 1 ? "Cancel" : "Cancel"}
+                    </Button>
                   </TableCell>
                 </TableRow>
               ))}

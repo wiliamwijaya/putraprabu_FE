@@ -40,6 +40,7 @@ export default function Order() {
     if (value === 1) return "Waiting List";
     if (value === 2) return "On Process";
     if (value === 3) return "Complete";
+    if (value >= 4) return "Cancel";
   };
 
   const handleProcess = (id, status) => {
